@@ -3,6 +3,7 @@ import "./globals.css";
 import SmoothScrolling from "@/components/SmoothScrolling";
 import { cn } from "@/lib/utils";
 import { basisGrotesqueArabic } from "@/lib/font";
+import IdleBallBG from "@/components/IdleBallBG";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +17,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn("min-h-screen font-sans antialiased", basisGrotesqueArabic.variable)}>
+      <body className={cn("min-h-dvh font-sans antialiased transform-gpu", basisGrotesqueArabic.variable)}>
+        <IdleBallBG />
         <SmoothScrolling>{children}</SmoothScrolling>
       </body>
     </html>
