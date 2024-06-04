@@ -8,7 +8,7 @@ export default function IdleBallBG() {
   const { delayX, delayY } = useMemo(() => ({ delayX: Math.round(Math.random() * 10), delayY: Math.round(Math.random() * 10) }), []);
 
   return (
-    <div className="fixed top-0 left-0 h-screen w-screen overflow-hidden -z-10">
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 5, ease: "linear" }} className="fixed top-0 left-0 h-screen w-screen overflow-hidden -z-10">
       <motion.div
         animate={{ x: ["-30dvw", "70dvw", "-30dvw"] }}
         transition={{
@@ -49,6 +49,6 @@ export default function IdleBallBG() {
         </motion.div>
       </motion.div>
       <NoiseCanvas />
-    </div>
+    </motion.div>
   );
 }

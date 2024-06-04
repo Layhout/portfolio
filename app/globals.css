@@ -21,18 +21,6 @@ body {
 }
 
 @layer components {
-  #nav_links::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 8px;
-    width: var(--ele-width, 0px);
-    height: var(--ele-height, 0px);
-    transform: translate3d(var(--ele-pos-x, 0px), var(--ele-pos-y, 0px), 0);
-    opacity: var(--ele-opacity, 0);
-    transition: all 0.5s ease;
-  }
 }
 
 @layer utilities {

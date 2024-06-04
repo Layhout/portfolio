@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn("min-h-dvh font-sans antialiased transform-gpu", basisGrotesqueArabic.variable)}>
+      <body className={cn("min-h-dvh font-sans antialiased", basisGrotesqueArabic.variable)}>
         <IdleBallBG />
         <SmoothScrolling>{children}</SmoothScrolling>
       </body>
