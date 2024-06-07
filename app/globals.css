@@ -21,6 +21,14 @@ body {
 }
 
 @layer components {
+  .section-header {
+    @apply text-3xl sm:text-4xl md:text-5xl font-black;
+  }
+
+  .bg-dash {
+    background: linear-gradient(var(--line-color, black), var(--line-color, black) 7px, transparent 7px, transparent 14px);
+    background-size: 100% 14px;
+  }
 }
 
 @layer utilities {

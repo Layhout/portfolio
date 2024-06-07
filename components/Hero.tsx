@@ -13,11 +13,12 @@ const ABOUT_ME = `A frontend developer with ${
 
 export default function Hero() {
   const aboutMeWrapper = useRef<HTMLElement>(null);
+  const myNameWrapper = useRef<HTMLElement>(null);
 
   const mouseXValue = useMotionValue(0);
   const mouseYValue = useMotionValue(0);
 
-  const { scrollY } = useScroll();
+  const { scrollYProgress: rootScrollYProgress } = useScroll({ target: myNameWrapper });
   const { scrollYProgress } = useScroll({ target: aboutMeWrapper, offset: ["start 0.9", "start 0.25"] });
 
   useEffect(() => {
@@ -42,18 +43,18 @@ export default function Hero() {
   const ix = useTransform(mouseXValue, [0, 1], [MOVE_RANGE, -MOVE_RANGE]);
   const iy = useTransform(mouseYValue, [0, 1], [MOVE_RANGE, -MOVE_RANGE]);
 
-  const scaleBack = useTransform(scrollY, [0, window.innerHeight], [1, 0.9]);
-  const blurOut = useTransform(scrollY, [0, window.innerHeight], ["blur(0px)", "blur(3px)"]);
-  const fakeOut = useTransform(scrollY, [0, window.innerHeight], [1, 0.6]);
+  const scaleTransform = useTransform(rootScrollYProgress, [0, 1], [1, 0.9]);
+  const blurTransform = useTransform(rootScrollYProgress, [0, 1], ["blur(0px)", "blur(3px)"]);
+  const opacityTransform = useTransform(rootScrollYProgress, [0, 1], [1, 0.5]);
 
   const allWordsInAboutMe = useMemo(() => ABOUT_ME.split(" "), []);
 
   return (
-    <section>
+    <section ref={myNameWrapper}>
       <motion.div
         className="h-dvh sticky top-0 left-0 flex justify-center items-end z-0"
         initial={{ scale: 1, filter: "blur(0px)", opacity: 1 }}
-        style={{ scale: scaleBack, filter: blurOut, opacity: fakeOut }}
+        style={{ scale: scaleTransform, filter: blurTransform, opacity: opacityTransform }}
       >
         <div className="w-full absolute top-[80%] lg:top-1/2 left-0 -translate-y-1/2">
           <motion.div initial={{ x: 0, y: 0 }} style={{ x, y }} className={LINEAR_EASE}>
@@ -81,8 +82,8 @@ export default function Hero() {
         </div>
       </motion.div>
       <div className="h-dvh flex justify-center items-center flex-col relative z-[1]">
-        <article className="max-w-7xl w-full text-center font-bold text-5xl" ref={aboutMeWrapper}>
-          <p className="flex flex-wrap justify-center gap-3">
+        <article className="max-w-7xl w-full text-center font-bold text-2xl md:text-3xl lg:text-5xl" ref={aboutMeWrapper}>
+          <p className="flex flex-wrap justify-center gap-[1vw]">
             {allWordsInAboutMe.map((word, i) => {
               const start = i / allWordsInAboutMe.length;
               const end = start + 1 / allWordsInAboutMe.length;
@@ -108,8 +109,8 @@ function Word({
   progress: MotionValue<number>;
   range: [number, number];
 }>) {
-  const fakeIn = useTransform(progress, range, [0.2, 1]);
-  const blurIn = useTransform(progress, range, ["blur(2px)", "blur(0px)"]);
+  const opacityTransform = useTransform(progress, range, [0.2, 1]);
+  const blurTransform = useTransform(progress, range, ["blur(2px)", "blur(0px)"]);
 
-  return <motion.span style={{ opacity: fakeIn, filter: blurIn }}>{children}</motion.span>;
+  return <motion.span style={{ opacity: opacityTransform, filter: blurTransform }}>{children}</motion.span>;
 }
