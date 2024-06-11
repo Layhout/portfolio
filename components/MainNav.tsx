@@ -1,12 +1,10 @@
 "use client";
 
-import { THEMES } from "@/lib/constants";
+import { easeOutQuart, THEMES } from "@/lib/constants";
 import { useLenis } from "@studio-freight/react-lenis/types";
 import { cubicBezier, motion, useAnimate, Variants } from "framer-motion";
-import { Moon, Sun } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
-
-const easeOutQuart = cubicBezier(0.165, 0.84, 0.44, 1);
+import { LuMoon, LuSun } from "react-icons/lu";
+import { useCallback, useState } from "react";
 
 const LINKS = [
   {
@@ -204,8 +202,8 @@ export default function MainNav() {
           onClick={() => setThemesToggle(p => (p === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT))}
         >
           <motion.div variants={themeBtnDivVariant} className="absolute top-full left-1/2 flex flex-col justify-between items-center h-full">
-            <Moon className="w-4 h-4 -translate-y-1/2" />
-            <Sun className="w-4 h-4 rotate-180 translate-y-1/2" />
+            <LuMoon className="w-4 h-4 -translate-y-1/2" />
+            <LuSun className="w-4 h-4 rotate-180 translate-y-1/2" />
           </motion.div>
         </motion.button>
       </div>

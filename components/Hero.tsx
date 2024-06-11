@@ -1,9 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useMemo, useRef } from "react";
-import { motion, MotionValue, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
+import { motion, MotionValue, useMotionValue, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { FaArrowRight, FaExternalLinkAlt, FaFacebook } from "react-icons/fa";
+import { FaLinkedin, FaTelegram } from "react-icons/fa6";
 
 const MOVE_RANGE = 30;
 const LINEAR_EASE = "transition-transform duration-100 ease-linear";
@@ -44,8 +45,8 @@ export default function Hero() {
   const iy = useTransform(mouseYValue, [0, 1], [MOVE_RANGE, -MOVE_RANGE]);
 
   const scaleTransform = useTransform(rootScrollYProgress, [0, 1], [1, 0.9]);
-  const blurTransform = useTransform(rootScrollYProgress, [0, 1], ["blur(0px)", "blur(3px)"]);
-  const opacityTransform = useTransform(rootScrollYProgress, [0, 1], [1, 0.5]);
+  const blurTransform = useTransform(rootScrollYProgress, [0, 1], ["blur(0px)", "blur(4px)"]);
+  const opacityTransform = useTransform(rootScrollYProgress, [0, 1], [1, 0.4]);
 
   const allWordsInAboutMe = useMemo(() => ABOUT_ME.split(" "), []);
 
@@ -70,18 +71,18 @@ export default function Hero() {
           </motion.div>
           <motion.div initial={{ x: 0, y: 0 }} className={cn("hidden lg:flex items-center gap-8", LINEAR_EASE)} style={{ x, y }}>
             <a href="https://www.linkedin.com/in/layhout-chea/" target="_blank">
-              <Image src="/assets/svgs/linkedin.svg" width={32} height={0} alt="linkedin" />
+              <FaLinkedin className="w-8 h-8" />
             </a>
             <a href="https://t.me/layhout" target="_blank">
-              <Image src="/assets/svgs/telegram.svg" width={32} height={0} alt="telegram" />
+              <FaTelegram className="w-8 h-8" />
             </a>
             <a href="https://www.facebook.com/chea.layhout.79" target="_blank">
-              <Image src="/assets/svgs/facebook.svg" width={32} height={0} alt="facebook" />
+              <FaFacebook className="w-8 h-8" />
             </a>
           </motion.div>
         </div>
       </motion.div>
-      <div className="h-dvh flex justify-center items-center flex-col relative z-[1]">
+      <div className="h-dvh flex justify-center items-center flex-col relative z-[1] gap-12">
         <article className="max-w-7xl w-full text-center font-bold text-2xl md:text-3xl lg:text-5xl" ref={aboutMeWrapper}>
           <p className="flex flex-wrap justify-center gap-[1vw]">
             {allWordsInAboutMe.map((word, i) => {
@@ -95,6 +96,18 @@ export default function Hero() {
             })}
           </p>
         </article>
+        <motion.a
+          initial={{ scale: 0.8, filter: "blur(3px)", opacity: 0 }}
+          whileInView={{ scale: 1, filter: "blur(0px)", opacity: 1, transition: { duration: 1 } }}
+          viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+          href="https://layhout.github.io/portfolio/src/assets/documents/Chea_Layhout_CV.pdf"
+          download="Chea Layhout's CV"
+          className="btn flex items-center gap-2"
+          target="_blank"
+        >
+          &emsp;View CV <FaExternalLinkAlt className="h-3 w-3 inline-block" />
+          &emsp;
+        </motion.a>
       </div>
     </section>
   );
