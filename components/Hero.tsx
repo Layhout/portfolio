@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef } from "react";
 import { motion, MotionValue, useMotionValue, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { FaArrowRight, FaExternalLinkAlt, FaFacebook } from "react-icons/fa";
+import { FaExternalLinkAlt, FaFacebook } from "react-icons/fa";
 import { FaLinkedin, FaTelegram } from "react-icons/fa6";
 
 const MOVE_RANGE = 30;
@@ -51,7 +51,7 @@ export default function Hero() {
   const allWordsInAboutMe = useMemo(() => ABOUT_ME.split(" "), []);
 
   return (
-    <section ref={myNameWrapper}>
+    <section ref={myNameWrapper} id="about_section">
       <motion.div
         className="h-dvh sticky top-0 left-0 flex justify-center items-end z-0"
         initial={{ scale: 1, filter: "blur(0px)", opacity: 1 }}

@@ -1,10 +1,10 @@
 "use client";
 
 import { easeOutQuart, THEMES } from "@/lib/constants";
-import { useLenis } from "@studio-freight/react-lenis/types";
-import { cubicBezier, motion, useAnimate, Variants } from "framer-motion";
+import { useLenis } from "@studio-freight/react-lenis";
+import { motion, useAnimate, Variants } from "framer-motion";
 import { LuMoon, LuSun } from "react-icons/lu";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const LINKS = [
   {
@@ -136,7 +136,8 @@ const themeBtnDivVariant: Variants = {
 };
 
 export default function MainNav() {
-  //   const lenis = useLenis();
+  const lenis = useLenis();
+  const linksWrapper = useRef<HTMLUListElement>(null);
 
   const [openNav, setOpenNav] = useState(false);
   const [themesToggle, setThemesToggle] = useState(THEMES.LIGHT);
@@ -144,8 +145,7 @@ export default function MainNav() {
   const [bgHoverFX, animate] = useAnimate();
 
   const setBgHoverFX = useCallback(
-    (e: MouseEvent) => {
-      const ele = e.target as HTMLElement;
+    (ele: HTMLElement) => {
       animate(
         bgHoverFX.current,
         {
@@ -167,6 +167,22 @@ export default function MainNav() {
       return !p;
     });
   }, [animate, bgHoverFX]);
+
+  const handleClickLink = useCallback(
+    (link: string) => {
+      lenis?.scrollTo(`#${link}`, { offset: -100 });
+      toggleNav();
+    },
+    [lenis, toggleNav]
+  );
+
+  useEffect(() => {
+    if (linksWrapper.current) {
+      const firstLink = linksWrapper.current.children[0] as HTMLElement;
+      setBgHoverFX(firstLink);
+    }
+    console.log("useEffect");
+  }, [animate, bgHoverFX, setBgHoverFX]);
 
   return (
     <motion.nav
@@ -211,20 +227,21 @@ export default function MainNav() {
         variants={linksWrapperVariant}
         className="flex pt-2 flex-col static md:pt-0 md:flex-row md:items-center md:absolute top-1/2 left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 overflow-hidden before:absolute before:top-0 before:left-0 before:rounded-lg before:bg-zinc-300"
         id="nav_links"
+        ref={linksWrapper}
       >
         {LINKS.map(({ link, name }, i) => (
           <motion.li
             variants={linkVariant}
-            onHoverStart={setBgHoverFX}
-            onClick={toggleNav}
+            onHoverStart={e => setBgHoverFX(e.target as HTMLElement)}
+            onClick={() => handleClickLink(link)}
             data-section={link}
             key={i}
-            className="cursor-pointer px-[18px] py-2 whitespace-nowrap hover:underline text-center md:[--link-open-y:0] md:[--link-close-y:100%] [--link-open-y:0] [--link-close-y:0] md:[--link-open-opacity:1] md:[--link-close-opacity:1] [--link-open-opacity:1] [--link-close-opacity:0] md:[--link-open-scale:1] md:[--link-close-scale:1] [--link-open-scale:1] [--link-close-scale:0.9]"
+            className="cursor-pointer px-[18px] py-2 whitespace-nowrap text-center md:[--link-open-y:0] md:[--link-close-y:100%] [--link-open-y:0] [--link-close-y:0] md:[--link-open-opacity:1] md:[--link-close-opacity:1] [--link-open-opacity:1] [--link-close-opacity:0] md:[--link-open-scale:1] md:[--link-close-scale:1] [--link-open-scale:1] [--link-close-scale:0.9]"
           >
             {name}
           </motion.li>
         ))}
-        <motion.li layout ref={bgHoverFX} className="absolute top-0 left-0 rounded-lg bg-zinc-200 -z-[1]" />
+        <motion.li initial={{ opacity: 0 }} layout ref={bgHoverFX} className="absolute top-0 left-0 rounded-lg bg-zinc-200 -z-[1]" />
       </motion.ul>
     </motion.nav>
   );

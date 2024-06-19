@@ -51,7 +51,7 @@ const MY_EXP = [
 
 export default function EduAndExp() {
   return (
-    <section className="flex gap-4 md:flex-row flex-col mb-14">
+    <section className="flex gap-4 md:flex-row flex-col mb-14" id="ee_section">
       <div className="flex-1">
         <h1 className="section-title">Education</h1>
         <div className="my-8 flex flex-col gap-2 fade-mask">
