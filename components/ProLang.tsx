@@ -77,91 +77,91 @@ const MY_LIBS_SKILLS = [
   {
     name: "React js",
     capacity: "w-[90%]",
-    bgColor: "bg-[#ccf5ff]",
+    bgColor: "[--bg-c:#ccf5ff]",
     fgColor: "to-[#61DBFB]",
   },
   {
     name: "Next js",
     capacity: "w-[90%]",
-    bgColor: "bg-[#d6d6d6]",
+    bgColor: "[--bg-c:#d6d6d6]",
     fgColor: "to-[#030303]",
   },
   {
     name: "Vue js",
     capacity: "w-[50%]",
-    bgColor: "bg-[#ccffe8]",
+    bgColor: "[--bg-c:#ccffe8]",
     fgColor: "to-[#41B883]",
   },
   {
     name: "React Native",
     capacity: "w-[90%]",
-    bgColor: "bg-[#ccf5ff]",
+    bgColor: "[--bg-c:#ccf5ff]",
     fgColor: "to-[#61DBFB]",
   },
   {
     name: "Node js",
     capacity: "w-[60%]",
-    bgColor: "bg-[#d0ffcc]",
+    bgColor: "[--bg-c:#d0ffcc]",
     fgColor: "to-[#68a063]",
   },
   {
     name: "Tailwind CSS",
     capacity: "w-[90%]",
-    bgColor: "bg-[#ccefff]",
+    bgColor: "[--bg-c:#ccefff]",
     fgColor: "to-[#36b7f1]",
   },
   {
     name: "SASS",
     capacity: "w-[60%]",
-    bgColor: "bg-[#ffcce6]",
+    bgColor: "[--bg-c:#ffcce6]",
     fgColor: "to-[#cc6699]",
   },
   {
     name: "Firebase",
     capacity: "w-[50%]",
-    bgColor: "bg-[#ffe6cc]",
+    bgColor: "[--bg-c:#ffe6cc]",
     fgColor: "to-[#f5820d]",
   },
   {
     name: "Bootstrap",
     capacity: "w-[50%]",
-    bgColor: "bg-[#e4ccff]",
+    bgColor: "[--bg-c:#e4ccff]",
     fgColor: "to-[#7c12f9]",
   },
   {
     name: "Material UI",
     capacity: "w-[40%]",
-    bgColor: "bg-[#cce3ff]",
+    bgColor: "[--bg-c:#cce3ff]",
     fgColor: "to-[#157fff]",
   },
   {
     name: "Vuetify",
     capacity: "w-[40%]",
-    bgColor: "bg-[#cce5ff]",
+    bgColor: "[--bg-c:#cce5ff]",
     fgColor: "to-[#1664ba]",
   },
   {
     name: "Mongodb",
     capacity: "w-[40%]",
-    bgColor: "bg-[#ccffda]",
+    bgColor: "[--bg-c:#ccffda]",
     fgColor: "to-[#2ced64]",
   },
   {
     name: "Framer Motion",
     capacity: "w-[60%]",
-    bgColor: "bg-[#d6d6d6]",
+    bgColor: "[--bg-c:#d6d6d6]",
     fgColor: "to-[#030303]",
   },
   {
     name: "shadcn/ui",
     capacity: "w-[80%]",
-    bgColor: "bg-[#d6d6d6]",
+    bgColor: "[--bg-c:#d6d6d6]",
     fgColor: "to-[#030303]",
   },
   {
     name: "Ant Design",
     capacity: "w-[60%]",
-    bgColor: "bg-[#cce0ff]",
+    bgColor: "[--bg-c:#cce0ff]",
     fgColor: "to-[#0c69ff]",
   },
 ];
@@ -187,7 +187,12 @@ export default function ProLang() {
 
 function Skill({ name, capacity, bgColor, fgColor }: { name: string; capacity: string; bgColor: string; fgColor: string }) {
   return (
-    <div className={cn("relative rounded-xl py-4 px-6 overflow-hidden", bgColor)}>
+    <div
+      className={cn(
+        "relative rounded-xl py-4 px-6 overflow-hidden shadow-none dark:shadow-[inset_0_0_10px_3px] shadow-transparent dark:shadow-[var(--bg-c,white)] bg-[var(--bg-c,white)] dark:bg-transparent",
+        bgColor
+      )}
+    >
       <motion.div
         initial="hidden"
         whileInView="visible"

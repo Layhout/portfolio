@@ -75,8 +75,8 @@ export default function EduAndExp() {
 function EItem({ title, location, date }: { title: string; location: string; date: string }) {
   return (
     <div className="flex gap-12 ml-5">
-      <div className="w-0.5 bg-dash [--line-color:#374151] mt-8 relative">
-        <div className="absolute top-0 left-px w-8 h-8 -translate-x-1/2 -translate-y-full rounded-full border-2 border-dashed border-gray-700 after:absolute after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:rounded-full after:bg-yellow-400 after:w-4 after:h-4" />
+      <div className="w-0.5 bg-dash [--line-color:#374151] dark:[--line-color:#d1d5db] mt-8 relative">
+        <div className="absolute top-0 left-px w-8 h-8 -translate-x-1/2 -translate-y-full rounded-full border-2 border-dashed border-gray-700 dark:border-gray-300 after:absolute after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:rounded-full after:bg-yellow-400 after:w-4 after:h-4" />
       </div>
       <motion.div
         className="pb-12"

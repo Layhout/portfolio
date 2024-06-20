@@ -5,6 +5,7 @@ import { useLenis } from "@studio-freight/react-lenis";
 import { motion, useAnimate, Variants } from "framer-motion";
 import { LuMoon, LuSun } from "react-icons/lu";
 import { useCallback, useEffect, useRef, useState } from "react";
+import useTheme from "@/hooks/useTheme";
 
 const LINKS = [
   {
@@ -140,7 +141,8 @@ export default function MainNav() {
   const linksWrapper = useRef<HTMLUListElement>(null);
 
   const [openNav, setOpenNav] = useState(false);
-  const [themesToggle, setThemesToggle] = useState(THEMES.LIGHT);
+
+  const { themesToggle, themeBtnRef, handleChangeTheme } = useTheme();
 
   const [bgHoverFX, animate] = useAnimate();
 
@@ -190,7 +192,7 @@ export default function MainNav() {
       initial="close"
       animate={openNav ? "open" : "close"}
       variants={wrapperVariant}
-      className="p-2 rounded-xl backdrop-blur-sm bg-white/60 fixed top-4 left-1/2 -translate-x-1/2 z-[9999] overflow-hidden md:[--nav-open-width:700px] md:[--nav-close-width:300px] [--nav-open-width:90%] [--nav-close-width:90%] [--nav-open-height:381px] [--nav-close-height:64px] md:[--nav-open-height:64px] md[--nav-close-height:64px]"
+      className="p-2 rounded-xl backdrop-blur-sm bg-white/60 dark:bg-black/40 fixed top-4 left-1/2 -translate-x-1/2 z-[9999] overflow-hidden md:[--nav-open-width:700px] md:[--nav-close-width:300px] [--nav-open-width:90%] [--nav-close-width:90%] [--nav-open-height:381px] [--nav-close-height:64px] md:[--nav-open-height:64px] md[--nav-close-height:64px]"
       id="main_nav"
     >
       <div className="flex justify-between items-center">
@@ -206,7 +208,7 @@ export default function MainNav() {
             src="/assets/images/CLH.png"
             alt="my logo"
             id="my_logo"
-            className="w-[50px] object-contain md:[--logo-open-y:-110%] md:[--logo-close-y:0] [--logo-open-y:0] [--logo-close-y:0]"
+            className="w-[50px] object-contain md:[--logo-open-y:-110%] md:[--logo-close-y:0] [--logo-open-y:0] [--logo-close-y:0] dark:invert-[90%]"
           />
         </div>
         <motion.button
@@ -215,9 +217,10 @@ export default function MainNav() {
           className="bg-zinc-200 w-12 h-12 rounded-lg relative overflow-hidden"
           id="theme_btn"
           type="button"
-          onClick={() => setThemesToggle(p => (p === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT))}
+          ref={themeBtnRef}
+          onClick={handleChangeTheme}
         >
-          <motion.div variants={themeBtnDivVariant} className="absolute top-full left-1/2 flex flex-col justify-between items-center h-full">
+          <motion.div variants={themeBtnDivVariant} className="absolute top-full left-1/2 flex flex-col justify-between items-center h-full dark:text-black">
             <LuMoon className="w-4 h-4 -translate-y-1/2" />
             <LuSun className="w-4 h-4 rotate-180 translate-y-1/2" />
           </motion.div>
@@ -241,7 +244,7 @@ export default function MainNav() {
             {name}
           </motion.li>
         ))}
-        <motion.li initial={{ opacity: 0 }} layout ref={bgHoverFX} className="absolute top-0 left-0 rounded-lg bg-zinc-200 -z-[1]" />
+        <motion.li initial={{ opacity: 0 }} layout ref={bgHoverFX} className="absolute top-0 left-0 rounded-lg bg-zinc-200 dark:bg-zinc-500 -z-[1]" />
       </motion.ul>
     </motion.nav>
   );

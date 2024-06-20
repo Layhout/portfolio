@@ -35,5 +35,5 @@ export default function NoiseCanvas() {
   }, []);
 
   // dark:opacity-[0.03]
-  return <canvas ref={canvasRef} className="absolute top-0 left-0 opacity-15" />;
+  return <canvas ref={canvasRef} className="absolute top-0 left-0 opacity-15 dark:opacity-5" />;
 }
