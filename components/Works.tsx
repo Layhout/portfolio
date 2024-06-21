@@ -119,7 +119,7 @@ function Work({ image, description, link }: { image: string; description: string
       >
         <Image src={image} alt="p1" width={1000} height={0} className="w-full rounded-lg" />
         <div className="p-4">
-          <p className="text-sm">{description}</p>
+          <p className="text-sm dark:text-gray-700">{description}</p>
           <div className="text-right">
             <a target="_blank" href={link} className="btn">
               visit

@@ -24,6 +24,8 @@ export default function Hero() {
   const { scrollYProgress } = useScroll({ target: aboutMeWrapper, offset: ["start 0.9", "start 0.25"] });
 
   useEffect(() => {
+    if (window.matchMedia("(any-hover: none)").matches) return;
+
     document.addEventListener("mousemove", handleMouseMove);
 
     function handleMouseMove(e: MouseEvent) {
