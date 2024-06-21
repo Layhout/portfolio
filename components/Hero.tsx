@@ -5,6 +5,7 @@ import { motion, MotionValue, useMotionValue, useScroll, useTransform } from "fr
 import { cn } from "@/lib/utils";
 import { FaExternalLinkAlt, FaFacebook } from "react-icons/fa";
 import { FaLinkedin, FaTelegram } from "react-icons/fa6";
+import { easeOutQuart } from "@/lib/constants";
 
 const MOVE_RANGE = 30;
 const LINEAR_EASE = "transition-transform duration-100 ease-linear";
@@ -58,16 +59,49 @@ export default function Hero() {
         style={{ scale: scaleTransform, filter: blurTransform, opacity: opacityTransform }}
       >
         <div className="w-full absolute top-[80%] lg:top-1/2 left-0 -translate-y-1/2">
-          <motion.div initial={{ x: 0, y: 0 }} style={{ x, y }} className={LINEAR_EASE}>
-            <h1 className="text-[4rem] sm:text-9xl xl:text-[13rem] 2xl:text-[15rem] uppercase font-black leading-[1] text-yellow-500">Chea</h1>
-            <h1 className="text-[4rem] sm:text-9xl xl:text-[13rem] 2xl:text-[15rem] uppercase font-black leading-[1] text-yellow-500">Layhout</h1>
+          <motion.div
+            initial={{ y: 50, filter: "blur(10px)", opacity: 0 }}
+            animate={{ y: 0, filter: "blur(0px)", opacity: 1 }}
+            transition={{ duration: 1.5, delay: 3, ease: easeOutQuart }}
+            className={LINEAR_EASE}
+          >
+            <motion.h1 initial={{ x: 0, y: 0 }} style={{ x, y }} className="text-[4rem] sm:text-9xl xl:text-[13rem] 2xl:text-[15rem] uppercase font-black leading-[1] text-yellow-500">
+              Chea
+            </motion.h1>
+            <motion.h1 initial={{ x: 0, y: 0 }} style={{ x, y }} className="text-[4rem] sm:text-9xl xl:text-[13rem] 2xl:text-[15rem] uppercase font-black leading-[1] text-yellow-500">
+              Layhout
+            </motion.h1>
           </motion.div>
         </div>
-        <motion.div initial={{ x: 0, y: 0 }} style={{ x: ix, y: iy }} className={cn("w-96 h-5/6 bg-red-500 relative", LINEAR_EASE)}></motion.div>
+        <motion.div
+          initial={{ y: 50, filter: "blur(10px)", opacity: 0 }}
+          animate={{ y: 0, filter: "blur(0px)", opacity: 1 }}
+          transition={{ duration: 2, delay: 2.5, ease: easeOutQuart }}
+          className={cn("h-[90dvh] relative", LINEAR_EASE)}
+        >
+          <motion.img initial={{ x: 0, y: 0 }} style={{ x: ix, y: iy }} src="/assets/images/me.png" alt="That's me" className="h-full object-contain object-bottom fade-mask" />
+        </motion.div>
         <div className="w-full absolute top-[80%] lg:top-1/2 left-0 -translate-y-1/2 flex justify-between items-start">
-          <motion.div initial={{ x: 0, y: 0 }} style={{ x, y }} className={LINEAR_EASE}>
-            <h1 className="text-[4rem] sm:text-9xl xl:text-[13rem] 2xl:text-[15rem] uppercase font-black leading-[1] text-transparent [-webkit-text-stroke:3px_#eab308]">Chea</h1>
-            <h1 className="text-[4rem] sm:text-9xl xl:text-[13rem] 2xl:text-[15rem] uppercase font-black leading-[1] text-transparent [-webkit-text-stroke:3px_#eab308]">Layhout</h1>
+          <motion.div
+            initial={{ y: 50, filter: "blur(10px)", opacity: 0 }}
+            animate={{ y: 0, filter: "blur(0px)", opacity: 1 }}
+            transition={{ duration: 1.5, delay: 3, ease: easeOutQuart }}
+            className={LINEAR_EASE}
+          >
+            <motion.h1
+              initial={{ x: 0, y: 0 }}
+              style={{ x, y }}
+              className="text-[4rem] sm:text-9xl xl:text-[13rem] 2xl:text-[15rem] uppercase font-black leading-[1] text-transparent [-webkit-text-stroke:3px_#eab308]"
+            >
+              Chea
+            </motion.h1>
+            <motion.h1
+              initial={{ x: 0, y: 0 }}
+              style={{ x, y }}
+              className="text-[4rem] sm:text-9xl xl:text-[13rem] 2xl:text-[15rem] uppercase font-black leading-[1] text-transparent [-webkit-text-stroke:3px_#eab308]"
+            >
+              Layhout
+            </motion.h1>
           </motion.div>
           <motion.div initial={{ x: 0, y: 0 }} className={cn("hidden lg:flex items-center gap-8", LINEAR_EASE)} style={{ x, y }}>
             <a href="https://www.linkedin.com/in/layhout-chea/" target="_blank">

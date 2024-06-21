@@ -48,7 +48,7 @@ export default function IdleBallBG() {
           />
         </motion.div>
       </motion.div>
-      <NoiseCanvas />
+      {/* <NoiseCanvas /> */}
     </motion.div>
   );
 }
