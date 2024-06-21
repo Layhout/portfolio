@@ -27,11 +27,15 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("/public/assets/images/grain.png");
+  background-image: url("../public/assets/images/grain.png");
   opacity: 0.4;
   background-size: 200px;
   z-index: -1;
   animation: ani-noise 0.5s steps(10) infinite;
+}
+
+.dark body::after {
+  background-image: url("../public/assets/images/grain_dark.png");
 }
 
 @layer components {
