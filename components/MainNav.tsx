@@ -183,7 +183,6 @@ export default function MainNav() {
       const firstLink = linksWrapper.current.children[0] as HTMLElement;
       setBgHoverFX(firstLink);
     }
-    console.log("useEffect");
   }, [animate, bgHoverFX, setBgHoverFX]);
 
   return (
