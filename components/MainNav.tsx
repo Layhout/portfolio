@@ -165,7 +165,6 @@ export default function MainNav() {
   const toggleNav = useCallback(() => {
     setOpenNav(p => {
       if (p) animate(bgHoverFX.current, { opacity: 0 });
-      else animate(bgHoverFX.current, { opacity: 1 }, { delay: 1 });
       return !p;
     });
   }, [animate, bgHoverFX]);
@@ -234,7 +233,13 @@ export default function MainNav() {
         {LINKS.map(({ link, name }, i) => (
           <motion.li
             variants={linkVariant}
-            onHoverStart={e => setBgHoverFX(e.target as HTMLElement)}
+            onHoverStart={e => {
+              setBgHoverFX(e.target as HTMLElement);
+              animate(bgHoverFX.current, { opacity: 1 });
+            }}
+            onHoverEnd={() => {
+              animate(bgHoverFX.current, { opacity: 0 });
+            }}
             onClick={() => handleClickLink(link)}
             data-section={link}
             key={i}
