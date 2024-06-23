@@ -138,7 +138,7 @@ export default function Hero() {
           initial={{ scale: 0.8, filter: "blur(3px)", opacity: 0 }}
           whileInView={{ scale: 1, filter: "blur(0px)", opacity: 1, transition: { duration: 1 } }}
           viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-          href="https://layhout.github.io/portfolio/src/assets/documents/Chea_Layhout_CV.pdf"
+          href="https://layhout.github.io/portfolio_v2/src/assets/documents/Chea_Layhout_CV.pdf"
           download="Chea Layhout's CV"
           className="btn flex items-center gap-2"
           target="_blank"

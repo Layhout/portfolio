@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
   transpilePackages: ["react-icons"],
   images: {
     remotePatterns: [
@@ -8,6 +9,7 @@ const nextConfig = {
         hostname: "*", // Match all domains and subdomains
       },
     ],
+    unoptimized: true
   },
 };
 
