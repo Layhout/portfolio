@@ -26,7 +26,9 @@ export default function Hero() {
   useEffect(() => {
     if (window.matchMedia("(any-hover: none)").matches) return;
 
-    document.addEventListener("mousemove", handleMouseMove);
+    setTimeout(() => {
+      document.addEventListener("mousemove", handleMouseMove);
+    }, 2000);
 
     function handleMouseMove(e: MouseEvent) {
       const mouseX = (e.clientX / window.innerWidth).toFixed(2);
