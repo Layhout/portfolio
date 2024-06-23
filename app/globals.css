@@ -57,18 +57,6 @@ body::after {
     @apply uppercase font-black text-black bg-yellow-400 p-4 rounded-lg no-underline inline-block cursor-pointer hover:bg-yellow-500;
   }
 
-  .hidden-on-mobile {
-    @media (any-hover: none) {
-      display: none;
-    }
-  }
-
-  .hidden-on-desktop {
-    @media (any-hover: hover) {
-      display: none;
-    }
-  }
-
   #copy-btn {
     @media (any-hover: none) {
       opacity: 1;
@@ -86,5 +74,17 @@ body::after {
 
   to {
     background-position: 100% 100%;
+  }
+}
+
+@media (any-hover: none) {
+  .hidden-on-mobile {
+    display: none;
+  }
+}
+
+@media (any-hover: hover) {
+  .hidden-on-desktop {
+    display: none;
   }
 }
