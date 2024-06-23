@@ -10,7 +10,7 @@ export default function IdleBallBG() {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 5, ease: "linear" }} className="fixed top-0 left-0 h-screen w-screen overflow-hidden -z-10">
       <motion.div
-        animate={{ x: ["-30dvw", "70dvw", "-30dvw"] }}
+        animate={{ x: ["-30vw", "70vw", "-30vw"] }}
         transition={{
           times: [0, 0.5, 1],
           duration: 100,
@@ -21,7 +21,7 @@ export default function IdleBallBG() {
         className="inline-block"
       >
         <motion.div
-          animate={{ y: ["-60dvh", "20dvh", "-60dvh"] }}
+          animate={{ y: ["-60vh", "20vh", "-60vh"] }}
           transition={{
             times: [0, 0.5, 1],
             duration: 80,
@@ -44,7 +44,7 @@ export default function IdleBallBG() {
             }}
             src="/assets/images/bgBall.png"
             alt="colorful ball"
-            className="h-[calc(100dvh+20rem)] opacity-50 object-contain"
+            className="h-[calc(100vh+20rem)] opacity-50 object-contain"
           />
         </motion.div>
       </motion.div>

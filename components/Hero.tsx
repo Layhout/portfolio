@@ -58,7 +58,7 @@ export default function Hero() {
   return (
     <section ref={myNameWrapper} id="about_section">
       <motion.div
-        className="h-dvh sticky top-0 left-0 flex justify-center items-end z-0"
+        className="h-screen sticky top-0 left-0 flex justify-center items-end z-0"
         initial={{ scale: 1, filter: "blur(0px)", opacity: 1 }}
         style={{ scale: scaleTransform, filter: blurTransform, opacity: opacityTransform }}
       >
@@ -81,7 +81,7 @@ export default function Hero() {
           initial={{ y: 50, filter: "blur(10px)", opacity: 0 }}
           animate={{ y: 0, filter: "blur(0px)", opacity: 1 }}
           transition={{ duration: 2, delay: 2.5, ease: easeOutQuart }}
-          className={cn("h-[90dvh] relative", LINEAR_EASE)}
+          className={cn("h-[90vh] relative", LINEAR_EASE)}
         >
           <motion.img initial={{ x: 0, y: 0 }} style={{ x: ix, y: iy }} src="/assets/images/me.png" alt="That's me" className="h-full object-contain object-bottom fade-mask" />
         </motion.div>
@@ -120,7 +120,7 @@ export default function Hero() {
           </motion.div>
         </div>
       </motion.div>
-      <div className="h-dvh flex justify-center items-center flex-col relative z-[1] gap-12">
+      <div className="h-screen flex justify-center items-center flex-col relative z-[1] gap-12">
         <article className="max-w-7xl w-full text-center font-bold text-2xl md:text-3xl lg:text-5xl" ref={aboutMeWrapper}>
           <p className="flex flex-wrap justify-center gap-[1vw]">
             {allWordsInAboutMe.map((word, i) => {

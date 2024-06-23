@@ -18,7 +18,7 @@ export default function Intro() {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 h-dvh w-dvw z-[9999]" ref={wrapperRef}>
+    <div className="fixed top-0 left-0 h-screen w-screen z-[9999]" ref={wrapperRef}>
       <motion.div
         initial={{ y: "0%" }}
         animate={{ y: "110%" }}
