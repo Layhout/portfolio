@@ -71,6 +71,12 @@ const MY_SKILLS = [
     bgColor: "[--bg-c:#ccebff]",
     fgColor: "to-[#5a839d]",
   },
+  {
+    name: "Dart",
+    capacity: "w-[60%]",
+    bgColor: "[--bg-c:#ccf5ff]",
+    fgColor: "to-[#00add8]",
+  },
 ];
 
 const MY_LIBS_SKILLS = [
@@ -163,6 +169,12 @@ const MY_LIBS_SKILLS = [
     capacity: "w-[60%]",
     bgColor: "[--bg-c:#cce0ff]",
     fgColor: "to-[#0c69ff]",
+  },
+  {
+    name: "Flutter",
+    capacity: "w-[50%]",
+    bgColor: "[--bg-c:#ccf5ff]",
+    fgColor: "to-[#00add8]",
   },
 ];
 

@@ -31,7 +31,6 @@ body::after {
   opacity: 0.4;
   background-size: 200px;
   z-index: -1;
-  animation: ani-noise 0.5s steps(10) infinite;
 }
 
 .dark body::after {
@@ -65,16 +64,6 @@ body::after {
 }
 
 @layer utilities {
-}
-
-@keyframes ani-noise {
-  from {
-    background-position: 0 0;
-  }
-
-  to {
-    background-position: 100% 100%;
-  }
 }
 
 @media (any-hover: none) {
