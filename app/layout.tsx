@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn("font-sans antialiased text-gray-700 dark:text-gray-200", basisGrotesqueArabic.variable)}>
-        {/* <IdleBallBG /> */}
+        <IdleBallBG />
         <SmoothScrolling>{children}</SmoothScrolling>
       </body>
     </html>
