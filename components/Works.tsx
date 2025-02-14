@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
-import { useCallback, MouseEvent, useRef } from "react";
+import { useEffect } from "react";
 
 const MY_PROJECTS = [
   {
@@ -26,6 +26,54 @@ const MY_PROJECTS = [
 ];
 
 export default function Works() {
+  useEffect(() => {
+    const tiltingFXWrapper: NodeListOf<HTMLElement> = document.querySelectorAll(".tilting-wrapper");
+    const tilt_strength = 0.07;
+
+    const controller = new AbortController();
+
+    if (!window.matchMedia("(any-hover: none)").matches) {
+      tiltingFXWrapper.forEach(t => {
+        t.addEventListener(
+          "mousemove",
+          function (e) {
+            const selfProps = this.getBoundingClientRect();
+            const mouseX = e.clientX - selfProps.x;
+            const mouseY = e.clientY - selfProps.y;
+            const halfX = this.scrollWidth / 2;
+            const halfY = this.scrollHeight / 2;
+
+            const tiltBody: HTMLElement | null = this.querySelector(".tilting-body");
+            if (tiltBody) {
+              tiltBody.style.transform = `perspective(800px) rotateY(${(halfX - mouseX) * -tilt_strength}deg) rotateX(${(halfY - mouseY) * tilt_strength}deg)`;
+              tiltBody.style.transitionDuration = "0.1s";
+            }
+
+            const topLayer: HTMLElement | null = this.querySelector(".top-layer");
+            if (topLayer) {
+              topLayer.style.transform = `translate3d(${(mouseX / this.scrollWidth - 0.5) * 4}%, 0, 0) translate3d(0, ${(mouseY / this.scrollHeight - 0.5) * 4}%, 0)`;
+              topLayer.style.transitionDuration = "0.1s";
+            }
+          },
+          { signal: controller.signal }
+        );
+
+        t.addEventListener(
+          "mouseleave",
+          function (_) {
+            this.querySelector(".tilting-body")?.removeAttribute("style");
+            this.querySelector(".top-layer")?.removeAttribute("style");
+          },
+          { signal: controller.signal }
+        );
+      });
+    }
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
+
   return (
     <section className="mb-14" id="work_section">
       <h1 className="section-title">Works</h1>
@@ -41,76 +89,30 @@ export default function Works() {
 const parentVariants = {
   hidden: { scale: 0.8, filter: "blur(3px)", opacity: 0, transition: { duration: 1 } },
   visible: { scale: 1, filter: "blur(0px)", opacity: 1, transition: { duration: 1 } },
-  hover: { scale: 1.05, transition: { duration: 0.7 } },
 };
-
-const childVariants = { hover: { opacity: 1, transition: { duration: 0.7 } } };
-
+// variants={childVariants} style={{ x: tranX, y: tranY }}
 function Work({ image, description, link }: { image: string; description: string; link: string }) {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const mouseXSpring = useSpring(x);
-  const mouseYSpring = useSpring(y);
-
-  const handleMouseMove = useCallback(
-    (e: MouseEvent<HTMLElement>) => {
-      if (!wrapperRef.current) return;
-
-      const rect = wrapperRef.current.getBoundingClientRect();
-
-      const mouseX = e.clientX - rect.left;
-      const mouseY = e.clientY - rect.top;
-
-      const rx = mouseX / rect.width - 0.5;
-      const ry = mouseY / rect.height - 0.5;
-
-      x.set(rx);
-      y.set(ry);
-    },
-    [x, y]
-  );
-
-  const handleMouseLeave = useCallback(() => {
-    x.set(0);
-    y.set(0);
-  }, [x, y]);
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
-  const tranX = useTransform(mouseXSpring, [-0.5, 0.5], ["-2%", "2%"]);
-  const tranY = useTransform(mouseYSpring, [-0.5, 0.5], ["-2%", "2%"]);
-
   return (
     <>
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        whileHover="hover"
-        variants={parentVariants}
-        viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-        ref={wrapperRef}
-        onMouseMoveCapture={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        className="group hidden-on-mobile"
-      >
-        <motion.div
-          style={{ transformStyle: "preserve-3d", rotateX, rotateY, transformPerspective: 800 }}
-          className="overflow-hidden rounded-lg relative after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-transparent group-hover:after:bg-black/70 after:z-[1] after:transition-all after:duration-700"
-        >
-          <Image src={image} alt="p1" width={1000} height={0} className="w-full" />
-          <motion.div initial={{ opacity: 0 }} variants={childVariants} style={{ x: tranX, y: tranY }} className="absolute top-0 left-0 w-full h-full p-4 flex flex-col justify-between z-[2]">
-            <p className="text-white text-sm">{description}</p>
-            <div className="text-right">
-              <a target="_blank" href={link} className="btn">
-                visit
-              </a>
+      <motion.div initial="hidden" whileInView="visible" variants={parentVariants} viewport={{ once: true, margin: "0px 0px -100px 0px" }} className="group hidden-on-mobile">
+        <div className="tilting-wrapper">
+          <div
+            // style={{ transformStyle: "preserve-3d", rotateX, rotateY, transformPerspective: 800 }}
+            className="tilting-body"
+          >
+            <Image src={image} alt="p1" width={1000} height={0} className="w-full" />
+            <div className="top-layer">
+              <p className="text-white">{description}</p>
+              <div className="text-right">
+                <a target="_blank" href={link} className="btn">
+                  visit
+                </a>
+              </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </motion.div>
+
       <motion.div
         initial={{ scale: 0.8, filter: "blur(3px)", opacity: 0 }}
         whileInView={{ scale: 1, filter: "blur(0px)", opacity: 1, transition: { duration: 1 } }}

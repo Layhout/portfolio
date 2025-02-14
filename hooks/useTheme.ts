@@ -17,7 +17,9 @@ export default function useTheme() {
     localStorage.setItem("theme", localTheme || THEMES.LIGHT);
     setThemesToggle(localTheme || THEMES.LIGHT);
 
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", catchThemeChanges);
+    const controller = new AbortController();
+
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", catchThemeChanges, { signal: controller.signal });
 
     function catchThemeChanges(event: MediaQueryListEvent) {
       const newTheme = event.matches ? THEMES.DARK : THEMES.LIGHT;
@@ -27,7 +29,7 @@ export default function useTheme() {
     }
 
     return () => {
-      window.matchMedia("(prefers-color-scheme: dark)").removeEventListener("change", catchThemeChanges);
+      controller.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

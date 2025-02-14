@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useEffect, useMemo, useRef } from "react";
@@ -17,37 +18,38 @@ export default function Hero() {
   const aboutMeWrapper = useRef<HTMLElement>(null);
   const myNameWrapper = useRef<HTMLElement>(null);
 
-  const mouseXValue = useMotionValue(0);
-  const mouseYValue = useMotionValue(0);
-
   const { scrollYProgress: rootScrollYProgress } = useScroll({ target: myNameWrapper });
   const { scrollYProgress } = useScroll({ target: aboutMeWrapper, offset: ["start 0.9", "start 0.25"] });
 
   useEffect(() => {
     if (window.matchMedia("(any-hover: none)").matches) return;
 
-    setTimeout(() => {
-      document.addEventListener("mousemove", handleMouseMove);
-    }, 2000);
+    const allDFX: NodeListOf<HTMLElement> = document.querySelectorAll(".drag-fx");
+    const allIDFX: NodeListOf<HTMLElement> = document.querySelectorAll(".drag-inv-fx");
 
-    function handleMouseMove(e: MouseEvent) {
-      const mouseX = (e.clientX / window.innerWidth).toFixed(2);
-      const mouseY = (e.clientY / window.innerHeight).toFixed(2);
-      mouseXValue.set(+mouseX);
-      mouseYValue.set(+mouseY);
-    }
+    const controller = new AbortController();
+
+    document.addEventListener(
+      "mousemove",
+      function (e) {
+        const move_x = window.innerWidth / 2 - e.clientX;
+        const move_y = window.innerHeight / 2 - e.clientY;
+        allDFX.forEach(a => {
+          a.style.transform = `translate3d(${-(move_x * 0.02)}px, ${-(move_y * 0.05)}px, 0)`;
+        });
+        allIDFX.forEach(a => {
+          a.style.transform = `translate3d(${move_x * 0.02}px, ${move_y * 0.05}px, 0)`;
+        });
+      },
+      { signal: controller.signal }
+    );
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
+      controller.abort();
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const x = useTransform(mouseXValue, [0, 1], [-MOVE_RANGE, MOVE_RANGE]);
-  const y = useTransform(mouseYValue, [0, 1], [-MOVE_RANGE, MOVE_RANGE]);
-  const ix = useTransform(mouseXValue, [0, 1], [MOVE_RANGE, -MOVE_RANGE]);
-  const iy = useTransform(mouseYValue, [0, 1], [MOVE_RANGE, -MOVE_RANGE]);
 
   const scaleTransform = useTransform(rootScrollYProgress, [0, 1], [1, 0.9]);
   const blurTransform = useTransform(rootScrollYProgress, [0, 1], ["blur(0px)", "blur(4px)"]);
@@ -69,12 +71,8 @@ export default function Hero() {
             transition={{ duration: 1.5, delay: 3, ease: easeOutQuart }}
             className={LINEAR_EASE}
           >
-            <motion.h1 initial={{ x: 0, y: 0 }} style={{ x, y }} className="text-[4rem] sm:text-9xl xl:text-[13rem] 2xl:text-[15rem] uppercase font-black leading-[1] text-yellow-500">
-              Chea
-            </motion.h1>
-            <motion.h1 initial={{ x: 0, y: 0 }} style={{ x, y }} className="text-[4rem] sm:text-9xl xl:text-[13rem] 2xl:text-[15rem] uppercase font-black leading-[1] text-yellow-500">
-              Layhout
-            </motion.h1>
+            <h1 className="text-[4rem] sm:text-9xl xl:text-[13rem] 2xl:text-[15rem] uppercase font-black leading-[1] text-yellow-500 drag-fx">Chea</h1>
+            <h1 className="text-[4rem] sm:text-9xl xl:text-[13rem] 2xl:text-[15rem] uppercase font-black leading-[1] text-yellow-500 drag-fx">Layhout</h1>
           </motion.div>
         </div>
         <motion.div
@@ -83,7 +81,7 @@ export default function Hero() {
           transition={{ duration: 2, delay: 2.5, ease: easeOutQuart }}
           className={cn("h-[90vh] relative", LINEAR_EASE)}
         >
-          <motion.img initial={{ x: 0, y: 0 }} style={{ x: ix, y: iy }} src="/assets/images/me.png" alt="That's me" className="h-full object-contain object-bottom fade-mask" />
+          <img src="/assets/images/me.png" alt="That's me" className="h-full object-contain object-bottom fade-mask drag-inv-fx" />
         </motion.div>
         <div className="w-full absolute top-[80%] lg:top-1/2 left-0 -translate-y-1/2 flex justify-between items-start">
           <motion.div
@@ -92,29 +90,22 @@ export default function Hero() {
             transition={{ duration: 1.5, delay: 3, ease: easeOutQuart }}
             className={LINEAR_EASE}
           >
-            <motion.h1
-              initial={{ x: 0, y: 0 }}
-              style={{ x, y }}
-              className="text-[4rem] sm:text-9xl xl:text-[13rem] 2xl:text-[15rem] uppercase font-black leading-[1] text-transparent [-webkit-text-stroke:3px_#eab308]"
-            >
-              Chea
-            </motion.h1>
-            <motion.h1
-              initial={{ x: 0, y: 0 }}
-              style={{ x, y }}
-              className="text-[4rem] sm:text-9xl xl:text-[13rem] 2xl:text-[15rem] uppercase font-black leading-[1] text-transparent [-webkit-text-stroke:3px_#eab308]"
-            >
-              Layhout
-            </motion.h1>
+            <h1 className="text-[4rem] sm:text-9xl xl:text-[13rem] 2xl:text-[15rem] uppercase font-black leading-[1] text-transparent [-webkit-text-stroke:3px_#eab308] drag-fx">Chea</h1>
+            <h1 className="text-[4rem] sm:text-9xl xl:text-[13rem] 2xl:text-[15rem] uppercase font-black leading-[1] text-transparent [-webkit-text-stroke:3px_#eab308] drag-fx">Layhout</h1>
           </motion.div>
-          <motion.div initial={{ x: 0, y: 0 }} className={cn("hidden lg:flex items-center gap-8", LINEAR_EASE)} style={{ x, y }}>
-            <a href="https://www.linkedin.com/in/layhout-chea/" target="_blank">
+          <motion.div
+            initial={{ y: 50, filter: "blur(10px)", opacity: 0 }}
+            animate={{ y: 0, filter: "blur(0px)", opacity: 1 }}
+            transition={{ duration: 1.5, delay: 3, ease: easeOutQuart }}
+            className={cn("hidden lg:flex items-center gap-8", LINEAR_EASE)}
+          >
+            <a href="https://www.linkedin.com/in/layhout-chea/" target="_blank" className="drag-fx">
               <FaLinkedin className="w-8 h-8" />
             </a>
-            <a href="https://t.me/layhout" target="_blank">
+            <a href="https://t.me/layhout" target="_blank" className="drag-fx">
               <FaTelegram className="w-8 h-8" />
             </a>
-            <a href="https://www.facebook.com/chea.layhout.79" target="_blank">
+            <a href="https://www.facebook.com/chea.layhout.79" target="_blank" className="drag-fx">
               <FaFacebook className="w-8 h-8" />
             </a>
           </motion.div>
