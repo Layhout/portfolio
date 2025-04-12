@@ -6,13 +6,7 @@ import { motion, MotionValue, useMotionValue, useScroll, useTransform } from "fr
 import { cn } from "@/lib/utils";
 import { FaExternalLinkAlt, FaFacebook } from "react-icons/fa";
 import { FaLinkedin, FaTelegram } from "react-icons/fa6";
-import { easeOutQuart } from "@/lib/constants";
-
-const MOVE_RANGE = 30;
-const LINEAR_EASE = "transition-transform duration-100 ease-linear";
-const ABOUT_ME = `A frontend developer with ${
-  new Date().getFullYear() - 2021
-}+ years experience who's driven by an insatiable hunger for experience and knowledge. My ultimate ambition is to evolve into a proficient full-stack developer.`;
+import { ABOUT_ME, easeOutQuart, LINEAR_EASE } from "@/lib/constants";
 
 export default function Hero() {
   const aboutMeWrapper = useRef<HTMLElement>(null);
@@ -129,8 +123,8 @@ export default function Hero() {
           initial={{ scale: 0.8, filter: "blur(3px)", opacity: 0 }}
           whileInView={{ scale: 1, filter: "blur(0px)", opacity: 1, transition: { duration: 1 } }}
           viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-          href="https://layhout.github.io/portfolio_v2/src/assets/documents/Chea_Layhout_CV.pdf"
-          download="Chea Layhout's CV"
+          href="/assets/pdf/my_cv.pdf"
+          download="Layhout Chea CV"
           className="btn flex items-center gap-2"
           target="_blank"
         >

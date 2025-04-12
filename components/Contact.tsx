@@ -1,17 +1,23 @@
 "use client";
 
-import { MouseEvent, useCallback } from "react";
+import { useCallback } from "react";
 
 export default function Contact() {
-  const copyToClipboard = useCallback((e: MouseEvent) => {
-    const ele = e.target as HTMLElement;
-    navigator.clipboard.writeText(ele.textContent!);
+  const copyToClipboard = useCallback((id: string) => {
+    const li = document.getElementById(id);
 
-    const copyBtn = ele.nextElementSibling as HTMLButtonElement;
-    copyBtn.innerHTML = "Copied!";
+    const contents = li?.querySelector("span");
+
+    navigator.clipboard.writeText(contents?.textContent || "");
+
+    const button = li?.querySelector("button");
+
+    if (!button) return;
+
+    button.innerHTML = "Copied!";
 
     setTimeout(() => {
-      copyBtn.innerHTML = "Copy";
+      button.innerHTML = "Copy";
     }, 2000);
   }, []);
 
@@ -21,13 +27,13 @@ export default function Contact() {
       <div className="flex-1 flex pt-8 pb-20 xl:pt-0 xl:pb-0 lg:items-center mt-8 mb-16">
         <div className="flex-1 flex flex-col gap-20 xl:flex-row xl:gap-0 justify-between">
           <ul className="flex flex-col justify-between gap-12 xl:gap-0 font-black">
-            <li onClick={copyToClipboard} className="text-gray-400 cursor-pointer group flex justify-between items-center">
+            <li onClick={() => copyToClipboard("contact-email")} className="text-gray-400 cursor-pointer group flex justify-between items-center" id="contact-email">
               <span className="text-xl sm:text-3xl">layhoutchea79@gmail.com</span>
               <button className="opacity-0 group-hover:opacity-100 font-normal" id="copy-btn">
                 Copy
               </button>
             </li>
-            <li onClick={copyToClipboard} className="text-gray-400 cursor-pointer group flex justify-between items-center">
+            <li onClick={() => copyToClipboard("contact-phone")} className="text-gray-400 cursor-pointer group flex justify-between items-center" id="contact-phone">
               <span className="text-xl sm:text-3xl">+855 96 336 9000</span>
               <button className="opacity-0 group-hover:opacity-100 font-normal" id="copy-btn">
                 Copy

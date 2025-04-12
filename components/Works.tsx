@@ -1,29 +1,9 @@
 "use client";
 
+import { MY_PROJECTS } from "@/lib/constants";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect } from "react";
-
-const MY_PROJECTS = [
-  {
-    image: "/assets/images/portfolio_1.jpg",
-    description:
-      "This is a group school project I completed with two other classmates. I took on the role of Developer, handling all the coding aspects. My teammates served as Director and Advisor, providing leadership and guidance throughout the process. The system we built is designed for restaurants situated near tourist destinations like waterfalls or beaches. Java served as the primary programming language for this project.",
-    link: "https://drive.google.com/drive/folders/1R_nQDtgyQGGx6SQ5mo7k1eA0ySyUs6zG?usp=sharing",
-  },
-  {
-    image: "/assets/images/portfolio_2.jpg",
-    description:
-      "After diving into HTML, CSS, and JavaScript, I discovered a particular fascination with CSS animation. To explore this interest further, I embarked on a personal project where I could apply everything I'd learned. The process was not only enjoyable, but it also led to a wealth of new discoveries.",
-    link: "https://layhout.github.io/music_visualizer",
-  },
-  {
-    image: "/assets/images/portfolio_3.jpg",
-    description:
-      "In this project, I brought together all the components I'd studied to create a system entirely from scratch.  I deliberately avoided using any third-party libraries, pushing myself to build everything myself.",
-    link: "https://layhout.github.io/what-i-learned",
-  },
-];
 
 export default function Works() {
   useEffect(() => {
