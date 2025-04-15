@@ -14,7 +14,6 @@ export default function SmoothScrolling({
   useEffect(() => {
     setIsSmoothScroll(!isMobile(navigator.userAgent || navigator.vendor || (window as any).opera));
   }, []);
-  console.log(isSmoothScroll);
 
   if (isSmoothScroll === null) return null;
   else if (!isSmoothScroll) return <>{children}</>;
