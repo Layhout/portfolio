@@ -22,7 +22,8 @@ export default function Contact() {
   }, []);
 
   return (
-    <section className="flex flex-col " id="contact_section">
+    <section className="flex flex-col relative">
+      <div className="absolute -top-24 w-0 h-0 opacity-0" id="contact_section" />
       <h1 className="section-title">Contacts</h1>
       <div className="flex-1 flex pt-8 pb-20 xl:pt-0 xl:pb-0 lg:items-center mt-8 mb-16">
         <div className="flex-1 flex flex-col gap-20 xl:flex-row xl:gap-0 justify-between">

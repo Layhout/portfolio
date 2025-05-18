@@ -55,7 +55,8 @@ export default function Works() {
   }, []);
 
   return (
-    <section className="mb-14" id="work_section">
+    <section className="mb-14 relative">
+      <div className="absolute -top-24 w-0 h-0 opacity-0" id="work_section" />
       <h1 className="section-title">Works</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 items-start mb-16 mt-8">
         {MY_PROJECTS.map(project => (

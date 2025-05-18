@@ -1,140 +1,23 @@
 "use client";
 
-import { easeOutQuart, THEMES } from "@/lib/constants";
+import {
+  easeOutQuart,
+  LINKS,
+  linksWrapperVariant,
+  linkVariant,
+  logoImgVariant,
+  navBtnDivVariant,
+  navBtnSpan1Variant,
+  navBtnSpan2Variant,
+  themeBtnDivVariant,
+  THEMES,
+  wrapperVariant,
+} from "@/lib/constants";
 import { useLenis } from "@studio-freight/react-lenis";
 import { motion, useAnimate, Variants } from "framer-motion";
 import { LuMoon, LuSun } from "react-icons/lu";
 import { useCallback, useEffect, useRef, useState } from "react";
 import useTheme from "@/hooks/useTheme";
-
-const LINKS = [
-  {
-    link: "about_section",
-    name: "About",
-  },
-  {
-    link: "ee_section",
-    name: "Edu & Exp",
-  },
-  {
-    link: "skill_section",
-    name: "Skill",
-  },
-  {
-    link: "work_section",
-    name: "Work",
-  },
-  {
-    link: "contact_section",
-    name: "Contacts",
-  },
-];
-
-const wrapperVariant: Variants = {
-  open: {
-    width: "var(--nav-open-width, 0px)",
-    maxHeight: "var(--nav-open-height, 0px)",
-    transition: { duration: 0.7, delay: 0, ease: easeOutQuart },
-  },
-  close: {
-    width: "var(--nav-close-width, 0px)",
-    maxHeight: "var(--nav-close-height, 0px)",
-    transition: { duration: 0.7, delay: 0.5, ease: easeOutQuart },
-  },
-};
-
-const navBtnDivVariant: Variants = {
-  open: {
-    rotate: -180,
-    transition: { duration: 0.7, ease: easeOutQuart },
-  },
-  close: {
-    rotate: 0,
-    transition: { duration: 0.7, ease: easeOutQuart },
-  },
-};
-
-const navBtnSpan1Variant: Variants = {
-  open: {
-    y: 0,
-    rotate: 45,
-    transition: { duration: 0.7, ease: easeOutQuart },
-  },
-  close: {
-    y: -4,
-    rotate: 0,
-    transition: { duration: 0.7, ease: easeOutQuart },
-  },
-};
-
-const navBtnSpan2Variant: Variants = {
-  open: {
-    y: 0,
-    rotate: -45,
-    width: "100%",
-    transition: { duration: 0.7, ease: easeOutQuart },
-  },
-  close: {
-    y: 4,
-    rotate: 0,
-    width: "50%",
-    transition: { duration: 0.7, ease: easeOutQuart },
-  },
-};
-
-const logoImgVariant: Variants = {
-  open: {
-    y: "var(--logo-open-y, 0px)",
-    transition: { duration: 0.7, delay: 0, ease: easeOutQuart },
-  },
-  close: {
-    y: "var(--logo-close-y, 0px)",
-    transition: { duration: 0.7, delay: 0.5, ease: easeOutQuart },
-  },
-};
-
-const linksWrapperVariant: Variants = {
-  open: {
-    zIndex: 1,
-    transition: { duration: 0, staggerChildren: 0.1 },
-  },
-  close: {
-    zIndex: -1,
-    transition: { duration: 0, staggerChildren: 0.1 },
-  },
-};
-
-const linkVariant: Variants = {
-  open: {
-    y: "var(--link-open-y, 0px)",
-    opacity: "var(--link-open-opacity, 1)",
-    scale: "var(--link-open-scale, 1)",
-    pointerEvents: "auto",
-    transition: { duration: 0.7, ease: easeOutQuart },
-  },
-  close: {
-    y: "var(--link-close-y, 0px)",
-    opacity: "var(--link-close-opacity, 1)",
-    scale: "var(--link-close-scale, 1)",
-    pointerEvents: "none",
-    transition: { duration: 0.7, ease: easeOutQuart },
-  },
-};
-
-const themeBtnDivVariant: Variants = {
-  light: {
-    rotate: 0,
-    y: "-50%",
-    x: "-50%",
-    transition: { duration: 0.7, ease: easeOutQuart },
-  },
-  dark: {
-    rotate: -180,
-    y: "-50%",
-    x: "-50%",
-    transition: { duration: 0.7, ease: easeOutQuart },
-  },
-};
 
 export default function MainNav() {
   const lenis = useLenis();
@@ -171,7 +54,14 @@ export default function MainNav() {
 
   const handleClickLink = useCallback(
     (link: string) => {
-      lenis?.scrollTo(`#${link}`, { offset: -100 });
+      if (lenis) {
+        lenis.scrollTo(`#${link}`);
+      } else {
+        document.documentElement.style.scrollBehavior = "smooth";
+        const a = document.createElement("a");
+        a.href = `#${link}`;
+        a.click();
+      }
       toggleNav();
     },
     [lenis, toggleNav]

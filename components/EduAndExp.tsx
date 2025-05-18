@@ -6,7 +6,8 @@ import { MY_EDU, MY_EXP } from "@/lib/constants";
 
 export default function EduAndExp() {
   return (
-    <section className="flex gap-4 md:flex-row flex-col mb-14" id="ee_section">
+    <section className="flex gap-4 md:flex-row flex-col mb-14 relative">
+      <div className="absolute -top-24 w-0 h-0 opacity-0" id="ee_section" />
       <div className="flex-1">
         <h1 className="section-title">Education</h1>
         <div className="my-8 flex flex-col gap-2">

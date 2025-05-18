@@ -6,7 +6,8 @@ import { CSSProperties } from "react";
 
 export default function ProLang() {
   return (
-    <section className="mb-14" id="skill_section">
+    <section className="mb-14 relative">
+      <div className="absolute -top-24 w-0 h-0 opacity-0" id="skill_section" />
       <h1 className="section-title">Programming Languages</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 items-start mb-16 mt-8">
         {MY_SKILLS.map(skill => (
