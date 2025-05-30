@@ -71,16 +71,13 @@ const parentVariants = {
   hidden: { scale: 0.8, filter: "blur(3px)", opacity: 0, transition: { duration: 1 } },
   visible: { scale: 1, filter: "blur(0px)", opacity: 1, transition: { duration: 1 } },
 };
-// variants={childVariants} style={{ x: tranX, y: tranY }}
+
 function Work({ image, description, link }: { image: string; description: string; link: string }) {
   return (
     <>
       <motion.div initial="hidden" whileInView="visible" variants={parentVariants} viewport={{ once: true, margin: "0px 0px -100px 0px" }} className="group hidden-on-mobile">
         <div className="tilting-wrapper">
-          <div
-            // style={{ transformStyle: "preserve-3d", rotateX, rotateY, transformPerspective: 800 }}
-            className="tilting-body"
-          >
+          <div className="tilting-body">
             <Image src={image} alt="p1" width={1000} height={0} className="w-full" />
             <div className="top-layer">
               <p className="text-white">{description}</p>

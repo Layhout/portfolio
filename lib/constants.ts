@@ -7,9 +7,9 @@ export const THEMES = {
 
 export const easeOutQuart = cubicBezier(0.165, 0.84, 0.44, 1);
 
-export const ABOUT_ME = `A frontend developer with ${
+export const ABOUT_ME = `A frontend developer with over ${
   new Date().getFullYear() - 2021
-}+ years experience who's driven by an insatiable hunger for experience and knowledge. My ultimate ambition is to evolve into a proficient full-stack developer.`;
+} years of experience, fueled by a relentless drive to learn and grow. I’m passionate about expanding my skills and aim to become a highly capable full-stack developer`;
 
 export const MOVE_RANGE = 30;
 
@@ -366,21 +366,8 @@ export const MY_LIBS_SKILLS = [
 
 export const MY_PROJECTS = [
   {
-    image: "/assets/images/portfolio_1.jpg",
-    description:
-      "This school project was a team effort with two classmates. I handled all coding as the Developer, while they provided leadership and guidance. We built a Java-based system for restaurants near tourist spots like waterfalls and beaches.",
-    link: "https://drive.google.com/drive/folders/1R_nQDtgyQGGx6SQ5mo7k1eA0ySyUs6zG?usp=sharing",
-  },
-  {
-    image: "/assets/images/portfolio_2.jpg",
-    description:
-      "After diving into HTML, CSS, and JavaScript, I discovered a particular fascination with CSS animation. To explore this interest further, I embarked on a personal project where I could apply everything I'd learned. The process was not only enjoyable, but it also led to a wealth of new discoveries.",
-    link: "https://layhout.github.io/music_visualizer",
-  },
-  {
-    image: "/assets/images/portfolio_3.jpg",
-    description:
-      "In this project, I brought together all the components I'd studied to create a system entirely from scratch.  I deliberately avoided using any third-party libraries, pushing myself to build everything myself.",
-    link: "https://layhout.github.io/what-i-learned",
+    image: "/assets/images/portfolio_1.png",
+    description: "Balancify is a side project I developed to simplify group expense management with friends and family.",
+    link: "https://balancify.vercel.app/",
   },
 ];
