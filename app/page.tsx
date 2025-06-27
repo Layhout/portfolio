@@ -23,7 +23,7 @@ export default async function Home() {
   return (
     <main className="container">
       <MainNav />
-      <Hero aboutMe={data?.aboutMe || ""} />
+      <Hero aboutMe={data?.aboutMe || ""} socialLinks={data?.socialLinks || []} />
       <EduAndExp myEdus={data?.myEdus || []} myExps={data?.myExps || []} />
       <ProLang myLibSkills={data?.myLibSkills || []} mySkills={data?.mySkills || []} />
       <Works myProjects={data?.myProjects || []} />

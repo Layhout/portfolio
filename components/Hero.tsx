@@ -2,13 +2,13 @@
 "use client";
 
 import { useEffect, useMemo, useRef } from "react";
-import { motion, MotionValue, useMotionValue, useScroll, useTransform } from "framer-motion";
+import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { FaExternalLinkAlt, FaFacebook } from "react-icons/fa";
 import { FaLinkedin, FaTelegram } from "react-icons/fa6";
-import { easeOutQuart, LINEAR_EASE } from "@/lib/constants";
+import { easeOutQuart, LINEAR_EASE, SocialLink } from "@/lib/constants";
 
-export default function Hero({ aboutMe }: { aboutMe: string }) {
+export default function Hero({ aboutMe, socialLinks }: { aboutMe: string; socialLinks: SocialLink[] }) {
   const aboutMeWrapper = useRef<HTMLElement>(null);
   const myNameWrapper = useRef<HTMLElement>(null);
 
@@ -50,6 +50,13 @@ export default function Hero({ aboutMe }: { aboutMe: string }) {
   const opacityTransform = useTransform(rootScrollYProgress, [0, 1], [1, 0.4]);
 
   const allWordsInAboutMe = useMemo(() => aboutMe.replace("${year}", `${new Date().getFullYear() - 2021}`).split(" "), [aboutMe]);
+  const { facebookLink, telegramLink, linkedinLink } = useMemo(() => {
+    const facebookLink = socialLinks.find(({ name }) => name === "Facebook")?.link || "";
+    const telegramLink = socialLinks.find(({ name }) => name === "Telegram")?.link || "";
+    const linkedinLink = socialLinks.find(({ name }) => name === "LinkedIn")?.link || "";
+
+    return { facebookLink, telegramLink, linkedinLink };
+  }, [socialLinks]);
 
   return (
     <section ref={myNameWrapper} id="about_section">
@@ -93,13 +100,13 @@ export default function Hero({ aboutMe }: { aboutMe: string }) {
             transition={{ duration: 1.5, delay: 3, ease: easeOutQuart }}
             className={cn("hidden lg:flex items-center gap-8", LINEAR_EASE)}
           >
-            <a href="https://www.linkedin.com/in/layhout-chea/" target="_blank" className="drag-fx">
+            <a href={linkedinLink} target="_blank" className="drag-fx">
               <FaLinkedin className="w-8 h-8" />
             </a>
-            <a href="https://t.me/layhout" target="_blank" className="drag-fx">
+            <a href={telegramLink} target="_blank" className="drag-fx">
               <FaTelegram className="w-8 h-8" />
             </a>
-            <a href="https://www.facebook.com/chea.layhout.79" target="_blank" className="drag-fx">
+            <a href={facebookLink} target="_blank" className="drag-fx">
               <FaFacebook className="w-8 h-8" />
             </a>
           </motion.div>
