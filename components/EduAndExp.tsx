@@ -2,16 +2,16 @@
 
 import { LuCalendarDays, LuMapPin } from "react-icons/lu";
 import { motion } from "framer-motion";
-import { MY_EDU, MY_EXP } from "@/lib/constants";
+import { MyE } from "@/lib/constants";
 
-export default function EduAndExp() {
+export default function EduAndExp({ myEdus, myExps }: { myEdus: MyE[]; myExps: MyE[] }) {
   return (
     <section className="flex gap-4 md:flex-row flex-col mb-14 relative">
       <div className="absolute -top-24 w-0 h-0 opacity-0" id="ee_section" />
       <div className="flex-1">
         <h1 className="section-title">Education</h1>
         <div className="my-8 flex flex-col gap-2">
-          {MY_EDU.map((edu, i) => (
+          {myEdus.map((edu, i) => (
             <EItem key={i} {...edu} />
           ))}
         </div>
@@ -19,7 +19,7 @@ export default function EduAndExp() {
       <div className="flex-1">
         <h1 className="section-title">Experience</h1>
         <div className="my-8 flex flex-col gap-2">
-          {MY_EXP.map((edu, i) => (
+          {myExps.map((edu, i) => (
             <EItem key={i} {...edu} />
           ))}
         </div>

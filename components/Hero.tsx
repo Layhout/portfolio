@@ -6,9 +6,9 @@ import { motion, MotionValue, useMotionValue, useScroll, useTransform } from "fr
 import { cn } from "@/lib/utils";
 import { FaExternalLinkAlt, FaFacebook } from "react-icons/fa";
 import { FaLinkedin, FaTelegram } from "react-icons/fa6";
-import { ABOUT_ME, easeOutQuart, LINEAR_EASE } from "@/lib/constants";
+import { easeOutQuart, LINEAR_EASE } from "@/lib/constants";
 
-export default function Hero() {
+export default function Hero({ aboutMe }: { aboutMe: string }) {
   const aboutMeWrapper = useRef<HTMLElement>(null);
   const myNameWrapper = useRef<HTMLElement>(null);
 
@@ -49,7 +49,7 @@ export default function Hero() {
   const blurTransform = useTransform(rootScrollYProgress, [0, 1], ["blur(0px)", "blur(4px)"]);
   const opacityTransform = useTransform(rootScrollYProgress, [0, 1], [1, 0.4]);
 
-  const allWordsInAboutMe = useMemo(() => ABOUT_ME.split(" "), []);
+  const allWordsInAboutMe = useMemo(() => aboutMe.replace("${year}", `${new Date().getFullYear() - 2021}`).split(" "), [aboutMe]);
 
   return (
     <section ref={myNameWrapper} id="about_section">

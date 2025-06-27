@@ -1,11 +1,11 @@
 "use client";
 
-import { MY_PROJECTS } from "@/lib/constants";
+import { MyProject } from "@/lib/constants";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect } from "react";
 
-export default function Works() {
+export default function Works({ myProjects }: { myProjects: MyProject[] }) {
   useEffect(() => {
     const tiltingFXWrapper: NodeListOf<HTMLElement> = document.querySelectorAll(".tilting-wrapper");
     const tilt_strength = 0.07;
@@ -59,7 +59,7 @@ export default function Works() {
       <div className="absolute -top-24 w-0 h-0 opacity-0" id="work_section" />
       <h1 className="section-title">Works</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 items-start mb-16 mt-8">
-        {MY_PROJECTS.map(project => (
+        {myProjects.map(project => (
           <Work key={project.image} {...project} />
         ))}
       </div>

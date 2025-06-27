@@ -1,8 +1,9 @@
 "use client";
 
+import { SocialLink } from "@/lib/constants";
 import { useCallback } from "react";
 
-export default function Contact() {
+export default function Contact({ socialLinks }: { socialLinks: SocialLink[] }) {
   const copyToClipboard = useCallback((id: string) => {
     const li = document.getElementById(id);
 
@@ -43,31 +44,13 @@ export default function Contact() {
             <li className="text-xl sm:text-3xl text-gray-400">Based in Phnom Penh, Cambodia.</li>
           </ul>
           <ul className="grid grid-cols-[repeat(2,auto)] justify-between text-3xl lg:grid-cols-[repeat(3,auto)] sm:text-5xl font-black gap-y-20 gap-x-0 lg:gap-8 xl:gap-12 2xl:gap-20">
-            <li>
-              <a href="https://t.me/layhout" className="hover:underline">
-                Telegram
-              </a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/layhout-chea/" className="hover:underline">
-                LinkedIn
-              </a>
-            </li>
-            <li>
-              <a href="https://github.com/Layhout" className="hover:underline">
-                Github
-              </a>
-            </li>
-            <li>
-              <a href="https://www.facebook.com/chea.layhout.79" className="hover:underline">
-                Facebook
-              </a>
-            </li>
-            <li>
-              <a href="https://www.instagram.com/layhout_chea/" className="hover:underline">
-                Instagram
-              </a>
-            </li>
+            {socialLinks.map(({ link, name }, i) => (
+              <li key={i}>
+                <a href={link} className="hover:underline">
+                  {name}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
