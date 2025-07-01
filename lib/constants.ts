@@ -334,7 +334,7 @@ export const MY_LIBS_SKILLS = [
   },
   {
     name: "Mongodb",
-    capacity: "40%",
+    capacity: "50%",
     bgColor: "#ccffda",
     fgColor: "#2ced64",
   },
