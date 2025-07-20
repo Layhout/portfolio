@@ -148,18 +148,18 @@ export const MY_EDU = [
   {
     title: "Master of IT Engineering",
     location: "Royal University of Phnom penh",
-    date: "2023 - Present",
+    date: "2023 - 2025",
   },
-  {
-    title: "Web Development",
-    location: "ETEC Center",
-    date: "2021 - 2022",
-  },
-  {
-    title: "Java Development",
-    location: "ETEC Center",
-    date: "2019 - 2020",
-  },
+  // {
+  //   title: "Web Development",
+  //   location: "ETEC Center",
+  //   date: "2021 - 2022",
+  // },
+  // {
+  //   title: "Java Development",
+  //   location: "ETEC Center",
+  //   date: "2019 - 2020",
+  // },
   {
     title: "Computer Science",
     location: "Royal University of Phnom penh",
