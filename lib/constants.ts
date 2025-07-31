@@ -358,4 +358,9 @@ export const MY_PROJECTS = [
     description: "Balancify is a side project I developed to simplify group expense management with friends and family.",
     link: "https://balancify.vercel.app/",
   },
+  {
+    image: "/assets/images/portfolio_2.png",
+    description: "A web and mobile eCommerce platform I developed at Zando Group, enabling users to browse and shop trending clothing from various popular brands.",
+    link: "https://zandokh.com/index",
+  },
 ];
