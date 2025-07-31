@@ -360,6 +360,11 @@ export const MY_PROJECTS = [
   },
   {
     image: "/assets/images/portfolio_2.png",
+    description: "As a Frontend Developer at Wing Bank, I optimized and maintained the mobile app Wingmall for ordering food, drinks, and international products.",
+    link: "https://apps.apple.com/us/app/wingmall/id1635320449",
+  },
+  {
+    image: "/assets/images/portfolio_3.png",
     description: "A web and mobile eCommerce platform I developed at Zando Group, enabling users to browse and shop trending clothing from various popular brands.",
     link: "https://zandokh.com/index",
   },
