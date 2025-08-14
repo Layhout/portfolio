@@ -174,13 +174,18 @@ export const MY_EDU = [
 
 export const MY_EXP = [
   {
+    title: "Senior Frontend Developer",
+    location: "Heng Feng (Cambodia) Bank",
+    date: "2025 - Present",
+  },
+  {
     title: "Frontend Developer",
     location: "Wing Bank",
-    date: "2023 - Present",
+    date: "2023 - 2025",
   },
   {
     title: "Software Developer",
-    location: "Zando Cambodia",
+    location: "ZANDO Group",
     date: "2021 - 2023",
   },
   {
