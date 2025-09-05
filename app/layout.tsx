@@ -4,6 +4,7 @@ import SmoothScrolling from "@/components/SmoothScrolling";
 import { cn } from "@/lib/utils";
 import { basisGrotesqueArabic } from "@/lib/font";
 import IdleBallBG from "@/components/IdleBallBG";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Chea Layhout",
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body className={cn("font-sans antialiased text-gray-700 dark:text-gray-200", basisGrotesqueArabic.variable)}>
         <IdleBallBG />
         <SmoothScrolling>{children}</SmoothScrolling>
+        <Analytics />
       </body>
     </html>
   );
