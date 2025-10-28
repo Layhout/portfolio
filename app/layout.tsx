@@ -15,6 +15,14 @@ export const metadata: Metadata = {
     siteName: "Chea Layhout",
     title: "Chea Layhout",
     type: "website",
+    countryName: "Cambodia",
+    description:
+      "A web/mobile developer with 3+ years experience who's driven by an insatiable hunger for experience and knowledge. My ultimate ambition is to evolve into a proficient full-stack developer.",
+    emails: "layhoutworkmail@gmail.com",
+    images: "/assets/images/og_images.jpg",
+    locale: "en",
+    phoneNumbers: "+855963369000",
+    url: "https://layhout.is-a.dev",
   },
 };
 
