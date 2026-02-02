@@ -216,7 +216,7 @@ export const MY_SKILLS = [
   },
   {
     name: "Typescript",
-    capacity: "80%",
+    capacity: "90%",
     bgColor: "#d6e3f2",
     fgColor: "#3075c0",
   },
@@ -258,13 +258,13 @@ export const MY_SKILLS = [
   },
   {
     name: "Kotlin",
-    capacity: "50%",
+    capacity: "70%",
     bgColor: "#e5dcff",
     fgColor: "#7f52ff",
   },
   {
     name: "Swift",
-    capacity: "50%",
+    capacity: "70%",
     bgColor: "#fcdcd7",
     fgColor: "#F05138",
   },
@@ -285,7 +285,7 @@ export const MY_LIBS_SKILLS = [
   },
   {
     name: "Vue js",
-    capacity: "50%",
+    capacity: "70%",
     bgColor: "#d9f1e6",
     fgColor: "#41B883",
   },
@@ -297,13 +297,13 @@ export const MY_LIBS_SKILLS = [
   },
   {
     name: "Material UI",
-    capacity: "50%",
+    capacity: "70%",
     bgColor: "#d0e5ff",
     fgColor: "#157fff",
   },
   {
     name: "Vuetify",
-    capacity: "50%",
+    capacity: "60%",
     bgColor: "#d0e0f1",
     fgColor: "#1664ba",
   },
@@ -338,6 +338,12 @@ export const MY_LIBS_SKILLS = [
     fgColor: "#027DFD",
   },
   {
+    name: "Jetpack Compose",
+    capacity: "60%",
+    bgColor: "#d8f8e6",
+    fgColor: "#3DDC84",
+  },
+  {
     name: "Node js",
     capacity: "60%",
     bgColor: "#e1ece0",
@@ -345,7 +351,7 @@ export const MY_LIBS_SKILLS = [
   },
   {
     name: "Firebase",
-    capacity: "50%",
+    capacity: "70%",
     bgColor: "#fde6cf",
     fgColor: "#f5820d",
   },
